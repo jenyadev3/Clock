@@ -6,12 +6,14 @@ function Clock({data}) {
   const [secondRotation, setSecondRotation] = useState(0);
 
   useEffect(() => {
+    if (!data) return;
     const intervalId = setInterval(() => {
       const [hours, minutes, seconds] = data.split(':').map(Number);
       // угловые значения для стрелок
       const hourAngle = hours * 30;
       const minuteAngle = minutes * 6; 
-      const secondAngle = seconds * 6; 
+      const secondAngle = (seconds / 5) * 30; 
+      console.log(minuteAngle)
       setHourRotation(hourAngle);
       setMinuteRotation(minuteAngle);
       setSecondRotation(secondAngle);

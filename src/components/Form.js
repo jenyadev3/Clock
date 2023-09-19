@@ -9,21 +9,25 @@ function Form() {
     try {
       const response = await fetch(`https://worldtimeapi.org/api/timezone/Europe/${city}`);
       const data = await response.json();
-      const currentTime = data.datetime;
-      const [hours, minutes, seconds] = currentTime.split(':').map(Number);
-        // часы в формате 12-часового времени (AM/PM)
-      let formattedHours = hours;
-      let amPm = 'AM';
-      if (hours >= 12) {
-       amPm = 'PM';
-      formattedHours = hours > 12 ? hours - 12 : hours;
-     }
-     const formattedTime = `${formattedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ${amPm}`;
-      setForm({ ...form, time: formattedTime});
+  
+      // Создаем новый объект Date, указывая временную зону
+      const currentTime = new Date(data.datetime);
+      const options = {
+        timeZone: data.timezone,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+  
+      // Получаем форматированное время для указанной временной зоны
+      const formattedTime = currentTime.toLocaleTimeString(undefined, options);
+  
+      setForm({ ...form, time: formattedTime });
     } catch (error) {
       console.error('Некорректная временная зона:', error);
     }
   };
+  
 
   const handleCityChange = (evt) => {
     const city = evt.target.value.trim();

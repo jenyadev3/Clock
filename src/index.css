@@ -83,8 +83,7 @@ code {
     left: 0;
     right: 0;
     margin: 0 auto;
-    animation: hour 86400s infinite linear;
-    animation: hour 60s infinite linear;
+    animation: hour 3600s infinite linear;
     &:before {
       position: absolute;
       content: "";
@@ -101,8 +100,7 @@ code {
     left: 0;
     right: 0;
     margin: 0 auto;
-    animation: minute 3600s infinite linear;
-    animation: minute 30s infinite linear;
+    animation: minute 60s infinite linear;
     &:before {
       position: absolute;
       content: "";
@@ -119,8 +117,7 @@ code {
     left: 0;
     right: 0;
     margin: 0 auto;
-    animation: second 60s infinite linear;
-    animation: second 15s infinite linear;
+    animation: second 1s infinite linear;
     &:before {
       position: absolute;
       content: "";
